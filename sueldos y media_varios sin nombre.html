@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calificaciones</title>
+</head>
+<body>
+
+<script>
+//guardar en un array los sueldos de varios empleados sin nombre//
+//obtener un array con la media de cada uno de los empleado
+
+  // ================== FUNCIONES ===========================
+  function Media (tab_sueldos) {
+    suma=0;
+    for(const x in tab_sueldos){
+       
+       suma=suma + tab_sueldos[x];
+
+    }
+    media=suma / (tab_sueldos.length);  //para que aparezca la media con el nombre metido en el array//
+    return(media);
+  }
+  function proceso (mat_sueldos) {
+    tab=[];
+    for (const x in mat_sueldos) {
+        tab.push(Media(mat_sueldos[x]));
+    }
+    return tab;
+  }
+  
+  function visualizar(tab_resul){
+    document.write ("La media son: <br>"); 
+     for(const x in tab_resul) {
+        document.write(tab_resul[x] + " ");
+     }
+  }
+
+
+// ======================= PROGRAMA PRINCIPAL =================
+ mat_sueldos = [  [1000, 700, 1200, 900, 1500],
+                  [800, 1300, 1800],
+                  [500, 950, 1500,1800],
+                  [1200, 1600, 900],
+                ];
+
+ tab_resul = proceso(mat_sueldos);
+visualizar (tab_resul);
+
+
+
+
+
+</script>
+
+</body>
+</html>
