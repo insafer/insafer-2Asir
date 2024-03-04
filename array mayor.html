@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ejercicio5</title>
+</head>
+<body>
+    <script>
+        //Declarar un array con  valores numericos, declarar el mayor
+        
+        const tab = [1, 5, 8, 10, 15];
+
+       
+
+        // Verificar si el valor está en el array
+function Mayor(tab) {
+    var mayor = -99999;
+    for (i=0; i < tab.length; i++){
+        if (tab[i]>mayor){
+            mayor= tab[i];
+        }
+    }
+    return mayor;
+}
+
+function visualizar(resul){
+    alert("El mayor numero en array es: " + resul);
+}
+
+var numero = parseInt(prompt("Ingresar un  numero"));
+resul = Mayor(tab);
+visualizar(resul);
+
+
+
+
+
+</script>
+
+</body>
+</html>
