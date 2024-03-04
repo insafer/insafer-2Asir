@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ejercicio5</title>
+</head>
+<body>
+    <script>
+        //Declarar un array con  valores numericos, se pide por teclado un valor y a continuación visualizar si se encuentra en el array o no.<!DOCTYPE html>
+        //el proceso entero se ejecuta 3 veces.
+        const numeros = [1, 5, 8, 10, 15];
+
+       
+
+        // Verificar si el valor está en el array
+function proceso(valorBuscado, numeros) {
+    sw ="no";
+    for (i = 0; i < numeros.length; i++){
+         if (numeros[i]== valorBuscado){
+            sw= "si";
+         }
+    }
+    return sw;
+}
+function visualizar(dato){
+    if(dato == "si"){
+        alert ("encontrado");
+     }
+     else{ 
+        alert ("no encontrado");
+     }
+
+}
+
+
+for (let i = 0; i < 3; i++){
+    const valorBuscado = parseInt(prompt("Introduce un valor a buscar:"));
+resul = proceso(valorBuscado, numeros);
+visualizar(resul);
+}
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
