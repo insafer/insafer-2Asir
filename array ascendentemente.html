@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ejercicio5</title>
+</head>
+<body>
+    <script>
+        //Declarar un array con  valores numericos, visualizar si se encuentra ascendentemente ordenados. si o no
+        
+        const tab = [10, 20, 30, 40, 50];
+
+       
+
+       // funcion para verificar si el array esta ordenado ascendentemente
+function Ascendente(tab) {
+     for (let i = 0; i < tab.length-1; i++){
+        if (tab[i]>tab[i + 1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+// verificar si el array esta ordenado ascendentemente y mostrar el resultado
+if (Ascendente(tab)) {
+    alert("El array está ordenado ascendentemente.");
+}
+else{
+    alert("El array no esta ordenado ascendentemente.");
+}
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
