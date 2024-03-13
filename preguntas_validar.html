@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Preguntas</title>
+</head>
+<body>
+
+  <h1>Formulario de Preguntas</h1>
+  
+  <form id="form-preguntas">
+    <div class="pregunta">
+      <label for="pregunta1">¿Cuál es la capital de Francia?</label>
+      <select id="pregunta1" class="respuesta">
+        <option value="">Selecciona una respuesta</option>
+        <option value="Londres">Londres</option>
+        <option value="Madrid">Madrid</option>
+        <option value="París">París</option>
+       
+      </select>
+    </div>
+    <div class="pregunta">
+      <label for="pregunta2">¿Quién escribió 'Don Quijote de la Mancha'?</label>
+      <select id="pregunta2" class="respuesta">
+        <option value="">Selecciona una respuesta</option>
+        <option value="Miguel de Cervantes">Miguel de Cervantes</option>
+        <option value="William Shakespeare">William Shakespeare</option>
+       
+      </select>
+    </div>
+    <div class="pregunta">
+      <label for="pregunta3">¿Cuál es el principal ingrediente de la pizza?</label>
+      <select id="pregunta3" class="respuesta">
+        <option value="">Selecciona una respuesta</option>
+        <option value="Salsa de tomate">Salsa de tomate</option>
+        <option value="Queso">Queso</option>
+        <option value="Masa">Masa</option>
+        
+      </select>
+    </div>
+    <button type="button" id="boton-validar">Validar respuestas</button>
+  </form>
+
+  <div id="resultado-container" style="display: none;">
+    <h2>Resultados</h2>
+    <p id="preguntas-acertadas">Preguntas acertadas: <span id="aciertos">0</span></p>
+    <div id="respuestas-incorrectas">
+      <h3>Respuestas incorrectas</h3>
+      <ul id="lista-incorrectas"></ul>
+    </div>
+  </div>
+
+
+<script>
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+  const bottonValidar = document.getElementById('boton-validar');
+  const respuestasCorrectas = {
+    "pregunta1": "París",
+    "pregunta2": "Miguel de Cervantes",
+    "pregunta3": "Masa"
+  };
+
+  bottonValidar.addEventListener('click', function() {
+    const respuestasUsuario = obtenerRespuestasUsuario();
+    const resultadoContainer = document.getElementById('resultado-container');
+    const aciertosSpan = document.getElementById('aciertos');
+    const listaIncorrectas = document.getElementById('lista-incorrectas');
+
+    let aciertos = 0;
+    listaIncorrectas.innerHTML = '';
+
+    Object.keys(respuestasUsuario).forEach(function(pregunta) {
+      const respuestaUsuario = respuestasUsuario[pregunta];
+      const respuestaCorrecta = respuestasCorrectas[pregunta];
+
+      if (respuestaUsuario === respuestaCorrecta) {
+        aciertos++;
+      } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Pregunta: ${pregunta}, Respuesta incorrecta: ${respuestaUsuario}. Respuesta correcta: ${respuestaCorrecta}`;
+        listaIncorrectas.appendChild(listItem);
+      }
+    });
+
+    aciertosSpan.textContent = aciertos;
+    resultadoContainer.style.display = 'block';
+  });
+
+  function obtenerRespuestasUsuario() {
+    const respuestasUsuario = {};
+    const selectElements = document.querySelectorAll('.respuesta');
+
+    selectElements.forEach(function(select) {
+      const pregunta = select.id;
+      const respuesta = select.value;
+      respuestasUsuario[pregunta] = respuesta;
+    });
+
+    return respuestasUsuario;
+  }
+});
+  </script>
+</body>
+</html>
