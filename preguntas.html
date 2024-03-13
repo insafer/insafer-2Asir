@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ejercicio5</title>
+</head>
+<body>
+
+  <h1>Desplegable</h1>
+  <div id="preguntas">
+  </div>
+    
+
+  <div id="resultado">
+    <h2>Resultados</h2>
+    <p id="preguntas-acertadas">Preguntas acertadas: <span id="aciertos">0</span></p>
+    <div id="respuestas-incorrectas">
+      <h3>Respuestas incorrectas</h3>
+      <ul id="lista-incorrectas"></ul>
+    </div>
+  </div>
+
+  
+    <script>
+        //el usuario responde a unas preguntas
+        //declarar en json los nombres de preguntas y las respuestas correspondientes, en json se guardan las respuestas
+        //visualizar cuantas preguntas ha acertado el usuario.
+        //visualice las respuestas no acertadas junto con la respuesta correcta.
+        document.addEventListener('DOMContentLoaded', function() {
+       
+        
+      var preguntasJSON = {
+      "preguntas": [
+        {
+           "pregunta": "¿Cuál es la capital de Francia?",
+          "opciones": ["Londres", "Paris", "Roma"],
+          "respuesta": "París"
+        },
+        {
+          
+          "pregunta": "¿Quién escribió 'Don Quijote de la Mancha'?",
+          "opciones": ["Miguel de Cervantes", "William Shakespeare"],
+          "respuesta": "Miguel de Cervantes"
+        },
+        {
+         
+          "pregunta": "¿Cuál es el principal ingrediente de la pizza?",
+          "opciones": ["salsa", "queso", "Masa"],
+          "respuesta": "Masa"
+        }
+      ]
+    };
+
+        //.................funciones .............. 
+        
+    function cargarPreguntas() {
+        var preguntasContainer = document.getElementById('preguntas');
+        var resultadoContainer = document.getElementById('resultado');
+        var aciertos = 0;
+        var respuestasIncorrectas = [];
+
+
+// .............programa principal.....
+
+
+  // Llenar las preguntas
+  
+  preguntasJSON.preguntas.forEach(function(pregunta, index) {
+          var preguntaElement = document.createElement('div');
+          preguntaElement.innerHTML = '<p>' + pregunta.pregunta + '</p>' +
+                                      '<select class="respuesta" data-indice="' + index + '">' +
+                                        '<option value="">Selecciona una opción</option>' +
+                                        pregunta.opciones.map(function(opcion) {
+                                          return '<option value="' + opcion + '">' + opcion + '</option>';
+                                        }).join('') +
+                                      '</select>';
+          preguntasContainer.appendChild(preguntaElement);
+        });
+
+
+      
+        
+
+
+
+// Manejar las respuestas del usuario
+       
+preguntasContainer.addEventListener('change', function(event) {
+          if (event.target.classList.contains('respuesta')) {
+            var indice = event.target.dataset.indice;
+            var respuestaUsuario = event.target.value.trim();
+            var respuestaCorrecta = preguntasJSON.preguntas[indice].respuesta;
+
+            if (respuestaUsuario === respuestaCorrecta) {
+              aciertos++;
+            } else {
+              respuestasIncorrectas.push({
+                pregunta: preguntasJSON.preguntas[indice].pregunta,
+                respuestaCorrecta: respuestaCorrecta
+              });
+            }
+
+            document.getElementById('aciertos').textContent = aciertos;
+           
+
+            // Mostrar respuestas incorrectas
+            var listaIncorrectas = document.getElementById('lista-incorrectas');
+            listaIncorrectas.innerHTML = '';
+            respuestasIncorrectas.forEach(function(respuesta) {
+              var item = document.createElement('li');
+              item.textContent = respuesta.pregunta + ' - Respuesta correcta: ' + respuesta.respuestaCorrecta;
+              listaIncorrectas.appendChild(item);
+            });
+          }
+        });
+      }
+
+      // Llamamos a la función para cargar las preguntas y manejar las respuestas
+      cargarPreguntas();
+    
+    });
+
+  </script>
+
+</body>
+</html>
+
+
+
+
+
