@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busqueda de Numeros</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .columna {
+        float: left;
+        width: 50%;
+    }
+</style>
+  
+</head>
+
+<body>
+    
+    <h1>Búsqueda de Números</h1>
+    <label for="numeroInput">Ingrese un número:</label>
+    <input type="text" id="numeroInput">
+    <button id="buscar">Buscar</button>
+    <div class="columna">
+        <h2>Valores positivos:</h2>
+        <ul id="listaPositivos"></ul>
+    </div>
+    <div class="columna">
+        <h2>Valores negativos:</h2>
+        <ul id="listaNegativos"></ul>
+    </div>
+
+<script>
+    
+   // un array con valores numerico, y se pide al usuario otro valor numerico y se informa si el numero esta o no en el array
+   // al final aparezca dos columnas donde aparezca valor negativo y valor positivo.
+   
+   $(document).ready(function() {
+            const arrayNumerico = [5, 10, -3, 8, -1, 20];
+
+            function buscarNumero(numero) {
+                const positivos = [];
+                const negativos = [];
+
+                arrayNumerico.forEach(function(valor) {
+                    if (valor === numero) {
+                        positivos.push(valor);
+
+                    } 
+                    if (valor < 0) {
+                        negativos.push(valor);
+                    }
+                });
+
+                if (positivos.length === 0) {
+                    positivos.push('El numero no esta en el array');
+                }
+
+                mostrarResultados(positivos, negativos);
+            }
+
+            function mostrarResultados(positivos, negativos) {
+                $('#listaPositivos').empty();
+                $('#listaNegativos').empty();
+
+                positivos.forEach(function(valor) {
+                    $('#listaPositivos').append('<li>' + valor + '</li>');
+                });
+
+                negativos.forEach(function(valor) {
+                    $('#listaNegativos').append('<li>' + valor + '</li>');
+                });
+            }
+
+            $('#buscar').click(function() {
+                const numeroInput = parseInt($('#numeroInput').val());
+                buscarNumero(numeroInput);
+            });
+        });
+    
+    </script>
+   
+
+
+</body>
+
+</html>
