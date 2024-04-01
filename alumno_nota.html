@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Alumno_Nota</h2>
+
+<p id="demo"></p>
+
+<script>
+let text = '{"alumno":{"nombre":"laura","notas":[3,7,8,9]}}';
+
+const obj = JSON.parse(text);
+document.getElementById("demo").innerHTML = obj.alumno['nombre']+" con "+obj.alumno['notas'][3];
+</script>
+
+</body>
+</html>
