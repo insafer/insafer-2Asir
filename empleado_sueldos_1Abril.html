@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 6.- Se declaran dos arrays A y B. El array A contiene 5 nombres de empleados y el array B sus 5 sueldos correspondientes. Es decir, al empleado cuyo nombre estÃ¡ en la primera posiciÃ³n le corresponde el sueldo que estÃ¡ en la primera posiciÃ³n, y asÃ­ sucesivamente.
+Se pide: obtener el empleado (nombre) con mayor sueldo. -->
+    
+      <script type="text/javascript">
+     var tab1=Array("Luis","Ana","Roberto","Laura");
+     var tab2=Array(2000,3000,900,2100);
+
+     $(function(){
+          
+          $(".boton").click(function() {
+             Proceso (tab1, tab2)
+          });
+          
+       });
+     
+     ;
+     
+     function Proceso(tab1, tab2){
+         var sueldo_mayor=0;
+         for (i=0; i< tab2.length; i++){
+             if (tab2[i] > sueldo_mayor){
+                 sueldo_mayor = tab2[i];
+                 posicion =  i;
+             }
+         }
+         document.getElementById("nombre").innerHTML=tab1[posicion];
+         document.getElementById("sueldo").innerHTML=tab2[posicion];
+     }
+ 
+     </script>
+</head>
+<body>
+<input type="button" class="boton" value="Obtener empleado con mayor sueldo">
+
+<div id="nombre"></div>
+<div id="sueldo"></div>
+
+</body>
+
+</html>
