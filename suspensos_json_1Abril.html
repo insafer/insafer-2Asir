@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Alumnos con Nota Media Suspendida</h2>
+
+<p id="alumnos_suspensos"></p>
+<p id="alumnos_mas_dos_suspensos"></p>
+
+<script>
+
+// Datos de los alumnos en formato JSON
+let text = '{"alumnos":[{"nombre":"Luis Ortiz", "notas":[6,4,7,6,7]},{"nombre":"Ana Torres", "notas":[7,5,5,8,9]},{"nombre":"Roberto Martinez", "notas":[3,2,4,4,6]},{"nombre":"Laura Moreno", "notas":[5,4,3,4,8]}]}';
+
+// Convertir el texto JSON en un objeto JavaScript
+let datos = JSON.parse(text);
+
+// Función para calcular la nota media
+function calcularMedia(notas) {
+    return notas.reduce((a, b) => a + b, 0) / notas.length;
+}
+
+// Alumnos con nota media suspendida
+let alumnosSuspensos = datos.alumnos.filter(alumno => calcularMedia(alumno.notas) < 5);
+
+// Mostrar los resultados de alumnos con nota media suspendida en la página web
+let resultadosSuspensosHTML = "<h3>Alumnos con Nota Media Suspendida</h3><ul>";
+alumnosSuspensos.forEach(alumno => {
+    resultadosSuspensosHTML += "<li>" + alumno.nombre + " - Nota Media: " + calcularMedia(alumno.notas) + "</li>";
+});
+resultadosSuspensosHTML += "</ul>";
+
+document.getElementById("alumnos_suspensos").innerHTML = resultadosSuspensosHTML;
+
+// Alumnos con más de dos suspensos
+let alumnosMasDosSuspensos = datos.alumnos.filter(alumno => {
+    let suspensos = alumno.notas.filter(nota => nota < 5);
+    return suspensos.length > 2;
+});
+
+// Mostrar los resultados de alumnos con más de dos suspensos en la página web
+let resultadosMasDosSuspensosHTML = "<h3>Alumnos con Más de Dos Suspensos</h3><ul>";
+alumnosMasDosSuspensos.forEach(alumno => {
+    resultadosMasDosSuspensosHTML += "<li>" + alumno.nombre + "</li>";
+});
+resultadosMasDosSuspensosHTML += "</ul>";
+
+document.getElementById("alumnos_mas_dos_suspensos").innerHTML = resultadosMasDosSuspensosHTML;
+
+</script>
+
+</body>
+</html>
