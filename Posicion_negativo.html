@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array numeros pares</title>
+</head>
+
+    <script>
+//Dado un array con valores numericos, visualizar la posición donde se encuentra el primer valor negativo.
+
+        
+      // ------------------funciones----
+
+       function proceso(valores) {
+        let sw = 0;
+        let i=0;
+        while (i < valores.length && sw == 0){
+            if (valores[i] < 0) {
+                var pos = i;
+                sw = 1;
+            } else{
+                i+=1;
+            }
+        }
+       return pos;
+
+       }
+       function visualizar (dato){
+        alert (dato);
+       }
+   //---------------programa principal-------------- 
+    
+       let valores = [6, 9, -3, 5, 12, -4, 7 , 2];
+       let resul = proceso (valores);
+       visualizar (resul);
+
+               
+
+    </script>
+    </head>
+    <body>
+
+</body>
+</html>
