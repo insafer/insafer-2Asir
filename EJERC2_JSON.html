@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperArray</title>
+</head>
+
+    <script>
+
+// ------------------funciones----
+
+
+function BuscarPosicion(valores) {
+        let sw = 0;
+        let i=0;
+        while (i < valores.length && sw == 0){
+            if (valores[i] < 0) {
+                var pos = i;
+                sw = 1;
+            } else{
+                i+=1;
+            }
+        }
+       return pos;
+
+       }
+       function Visualizar (mat){
+        for (let i=0; i < mat.length; i++){
+            resul = BuscarPosicion(mat[i]);
+            alert (resul);
+        }
+       }
+   //---------------programa principal-------------- 
+    
+       let texto = '{"super_array":[[6, 9, -3, 5, 12, -4, 7 , 2],[1, -5, 8, 9],[8, 6, -3, 7],[-5, 6, 8]]}';
+       obj = JSON.parse(texto);
+       Visualizar (obj.super_array);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
